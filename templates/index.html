@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Just Scraping the Surface . . . of Mars </h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Mars Data!</a></p>
+
+        </div>
+            
+            <div class="row">
+                            <div class="card" style="width: 20rem;">
+                                <div class="card-body">
+                                  <h5 class="card-title">Latest Mars News</h5>
+                                  <h3 class="card-subtitle mb-2 text-muted"> {{fullmarsdata.newstitle}} </h3>
+                                  <p class="card-text">{{ fullmarsdata.newsparagraph }}</p>
+                                </div>
+                            </div>
+              </div>
+              <div class="row">
+                    <div class="col-sm-4">
+                      <h5 class="card-title">Mars Facts</h5>
+                      {{fullmarsdata.marsfacts | safe}}
+                    </div>
+
+                    <div class="col-sm-4">
+                      <h5 class="card-title">Featured Mars Image</h5>
+                      <img src=" {{fullmarsdata.featuredimage}} " width="300" height="300">
+                    </div>
+
+                      <div class="col-sm-4">
+                            <div class="panel panel-default">
+                              <div class="panel-heading">Current Weather on Mars</div>
+                              <div class="panel-body">
+                                <p class="card-text"> {{fullmarsdata.marsweather}} </p>
+                              </div>
+                            </div>
+                          
+                     </div>
+                  </div>
+
+              </div>
+              {% for pics in fullmarsdata.marsdata %}
+                <div class="panel panel-default">
+                <div class="panel-heading">{{pics.title}}</div>
+                <div class="panel-body">
+                    <img class="img-responsive" src="{{pics.img_url}}" width="300" height="300" class="img-rounded" id="Panel_Image">
+                </div>
+                </div>
+              {% endfor %}
+
+    </div>
+
+</body>
+       <!-- "newstitle":title_text,
+        "newsparagraph":para_text,
+        "featuredimage":featured_image_url,
+        "marsfacts":html_table,
+        "marsweather":mars_weather,
+        "marsdata":mars_data -->
+</html>
